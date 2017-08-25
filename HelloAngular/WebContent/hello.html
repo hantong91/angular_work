@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.box{
+		width:100px;
+		height:100px;
+		background-color:yellow;
+	}
+</style>
+<!-- angular js 로딩하기 -->
+<script src ="js/angular.js"></script>
+</head>
+<body ng-app>
+<h3>Hello Angular js</h3>
+<p>10 + 10 = <strong>{{10+10}}</strong> </p>
+<input type="text" ng-model="msg"/>
+<p>{{msg}} </p>
+<input type="checkbox" ng-model="isChecked"/>
+<p>{{isChecked}}</p>
+<div class="box" ng-show="isChecked">ischecked가 true이면 보임</div>
+
+
+
+<!-- $("input").on("keyup",function(){
+	var str = $(this).val();
+	$("p").text(str);
+})  -->
+
+</body>
+</html>

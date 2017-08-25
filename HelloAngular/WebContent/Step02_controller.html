@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step02_controller.html</title>
+<script src="js/angular.min.js"></script>
+<script> <!-- 모듈객체를 만들어서 컨트롤러를 찍어낼수있다 ex) module.controller-->
+	//angular 모듈만들기
+	var myApp =angular.module("myApp",[]);
+	// ctrl1 이라는 이름의 컨트롤러 만들기
+	myApp.controller("Ctrl1",["$scope",function($scope){
+		$scope.name="김구라";
+		$scope.clicked=function(){
+			alert("버튼을 눌렀네?");
+		};
+		$scope.nums=[10,20,30,40,50];
+	}]);
+	// ctrl2 이라는 이름의 컨트롤러 만들기
+	myApp.controller("Ctrl2",["$scope",function($scope){
+		$scope.name="원숭이";
+		
+		$scope.friends=[
+			{num:1,name:"김구라",addr:"노량진"},
+			{num:2,name:"해골",addr:"행신동"},
+			{num:3,name:"원숭이",addr:"동물원"}
+			
+		];
+		
+	}]);
+</script>
+</head>
+<body>
+<div ng-controller="Ctrl1">
+	<p>내이름은: <strong>{{name}}</strong></p>
+	<button ng-click="clicked()">눌러보셈</button>
+	<ul>
+		<li ng-repeat="tmp in nums">{{tmp}}</li>
+	</ul>
+	<!-- for(i=0;i<nums.length;i++){
+			var tmp=nums[i];
+			$("<li/>").text(tmp).apendTo("ul")
+			}
+	 -->
+</div>
+<div ng-controller="Ctrl2">
+	<p>너의 이름은 : <strong>{{name}}</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tmp in friends">
+				<td>{{tmp.num}}</td>
+				<td>{{tmp.name}}</td> <!-- 이거도되고 -->
+				<td ng-bind="tmp.addr"></td>  <!-- 이거도됨 -->
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+	
+	
+</body>
+</html>

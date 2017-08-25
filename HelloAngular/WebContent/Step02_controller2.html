@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step02_controller2.html</title>
+<script src="js/angular.min.js"></script>
+<script> <!-- 모듈객체를 만들어서 컨트롤러를 찍어낼수있다 ex) module.controller-->
+	//angular 모듈만들기
+	var myApp =angular.module("myApp",[]);
+	// ctrl1 이라는 이름의 컨트롤러 만들기
+	myApp.controller("Ctrl1",["$scope",function($scope){
+		$scope.msgs=[];
+		$scope.addClicked=function(){
+			//오브젝트에 싸서 배열에 집어넣어야함 안그러면 같은 참조값이 들어가면 오류남
+			//입력한 문자열을 이용해서 object 를 만든다. 
+			var obj={msg:$scope.msg};
+			//만든 object 를 배열에 추가 
+			$scope.msgs.push(obj);
+			//입력창 초기화
+			$scope.msg="";//아래 input 의 model을 가르킴 
+		};
+		$scope.clearAll=function(){
+			$scope.msgs=[];
+		}
+	}]);
+
+	
+</script>
+</head>
+<body>
+<div ng-controller="Ctrl1">
+	<input type="text" ng-model="msg"/>
+	<button ng-click="addClicked()">추가</button>
+	<button ng-click="clearAll()">모두삭제</button>
+	<!-- <button ng-click="msgs.push(msg)"> 이렇게하면 function을 굳이 안만들어도됨 -->
+	<ul>
+		<li ng-repeat="tmp in msgs">{{tmp.msg}}</li>
+	</ul>
+</div>
+	
+</body>
+</html>

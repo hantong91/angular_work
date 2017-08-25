@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step04_showHide.html</title>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+보이게 할지 여부<input type="checkbox" ng-model="isShow" /><!-- checkbox의 상태값을 저장하는 모델의 이름이 isShow -->
+<br />
+<img src="images/1.jpg" width="200" ng-show="isShow"/><!-- 그 isShow가  true이면 보이게함 -->
+<br />
+숨길지 여부 <input type="checkbox" ng-model="isHide"/>
+<br />
+<img src="images/2.png" width="200" ng-hide="isHide"/>
+</body>
+</html>

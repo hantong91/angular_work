@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app><!-- html에서 일어나는걸 angular가 관리하겠다는것 -->
+<head>
+<meta charset="UTF-8">
+<title>Step01_click.html</title>
+<script src="js/angular.js"></script>
+</head>
+<body ng-init="count=0">
+<button ng-click="msg='clicked!'">눌러보셈</button>
+<p>{{msg}}</p>
+<button ng-click="count=count+1">여러번 눌러보셈</button>
+<p><strong>{{count}}</strong>번 클릭했네?</p>
+
+</body>
+</html>
