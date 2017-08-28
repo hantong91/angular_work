@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step05_form.html</title>
+<style>
+	form p{
+		color:red;
+	}
+</style>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+	<form action="insertAction" method="post" name="myForm"novalidate>
+		아이디 <input type="text" name="id" ng-required="true" ng-model="id" /><!-- required true하면 안적고 submit했을때 적으라고뜸(html5지원되는 브라우저일때) 
+																				form에 novalidate적으면 html5가 작동을멈춤 -->
+		<br />																		
+		<p ng-show="myForm.id.$invalid && myForm.id.$dirty">반드시 입력하세요</p>
+		비밀번호 <input type="text" name="pwd" 
+		ng-required="true"
+		ng-model="pwd"
+		ng-minlength="5"/> <!-- 5글자 미만이면 true   -->
+		
+		<br />
+		<p ng-show="myForm.pwd.$error.minlength">5글자 이상 입력하세요</p>
+		<button type="submit" ng-disabled="myForm.$invalid">가입</button>
+	</form>
+<p>myForm.$valid=<strong>{{myForm.$valid}}</strong></p> <!-- 폼전체가 true 이려면 모든필드가 true이여야함 -->
+<p>myForm.$invalid=<strong>{{myForm.$invalid}}</strong></p>
+<p>myForm.id.$valid=<strong>{{myForm.id.$valid}}</strong></p>
+<p>myForm.id.$invalid=<strong>{{myForm.id.$invalid}}</strong></p>
+<p>myForm.id.$dirty=<strong>{{myForm.id.$dirty}}</strong></p> <!-- 한번이라도 입력했다면 dirty = "true"가됨 지웠더라도 -->
+<p>myForm.id.$pristine=<strong>{{myForm.id.$pristine}}</strong></p><!-- dirty의 반대 (깨끗한지) -->
+
+
+
+<p>myForm.pwd.$valid=<strong>{{myForm.pwd.$valid}}</strong></p>
+<p>myForm.pwd.$invalid=<strong>{{myForm.pwd.$invalid}}</strong></p>
+<p>myForm.pwd.$dirty=<strong>{{myForm.pwd.$dirty}}</strong></p>
+<p>myForm.pwd.$pristine=<strong>{{myForm.pwd.$pristine}}</strong></p>
+<p>myForm.pwd.$error.minlength=<strong>{{myForm.pwd.$error.minlength}}</strong></p>
+
+</body>
+</html>
