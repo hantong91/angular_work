@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<meta charset="UTF-8">
+<title>Step07_event3.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	angular.module("MyApp",[])
+	.controller("MyCtrl", function($scope){
+		$scope.msgs=[];
+		$scope.onKeyup=function($event){
+			//입력한 키의 코드값
+			var code=$event.keyCode;
+			//엔터키를 눌렀을때 (코드값:13)
+			if(code==13){
+				// input 요소에 입력한 문자열을 object 에 담아서 
+				var obj={msg:$scope.msg};
+				// 배열에 추가하기 
+				$scope.msgs.push(obj);	
+			}
+		};
+	});
+</script>
+</head>
+<body ng-controller="MyCtrl">
+<input type="text" ng-keyup="onKeyup($event)" ng-model="msg"/> <!-- $로 시작하는 문자는 angular에서 약속된문자열이라고함 -->
+<ul>
+	<li ng-repeat="tmp in msgs">{{tmp.msg}}</li>
+</ul>
+</body>
+</html>
+
+
+
+

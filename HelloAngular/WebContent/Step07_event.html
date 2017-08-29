@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step07_event.html</title>
+<style>
+	.box{
+		width:100px;
+		height:100px;
+		background-color:yellow;
+	}
+</style>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+<button ng-click="msg='버튼 클릭!'"
+		ng-focus="msg='버튼 focus!'" 
+		ng-blur="msg='버튼이 focus를 잃었네요!'">클릭</button> <!-- focus는 포커스일때 변수전달 blur는 포커스잃었을때  -->
+<div class="box" ng-click="msg='div클릭!'">클릭</div>
+<input type="text" ng-focus="msg='input focus!'"
+		ng-keydown="msg='input keydown!'"
+		ng-keyup="msg='input keyup!'"
+		ng-blur="msg='input 요소가 focus 를 잃었네요!'" />
+<!-- 
+		$("input").on("focus",function(){
+			$("p").text("input focus!");
+		});
+ -->
+ <div class="box" ng-mousedown="msg='div mousedown!'"
+ 				 ng-mouseup="msg='div mouseup!'"
+ 				 ng-mousemove=""
+ 				 ng-mouseenter="msg='div mouseenter!'"
+ 				 ng-mouseleave="msg='div mouseleave'"> 마우스 이벤트</div>
+<p>{{msg}}</p>
+</body>
+</html>

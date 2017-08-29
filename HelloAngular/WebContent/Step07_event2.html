@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step07_event2.html</title>
+<style>
+	.box{
+		border:1px solid red;
+		width:100px;
+		height:100px;
+	}
+</style>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+<ul>
+	<li><a href="" ng-focus="isShowHome=true"
+					ng-blur="isShowHome=false">Home</a></li>
+	<li><a href="" ng-focus="isShowGame=true"
+					ng-blur="isShowGame=false">Game</a></li>
+	<li><a href="" ng-focus="isShowChat=true"
+					ng-blur="isShowChat=false">Chat</a></li>
+</ul>
+<div class="box" ng-show="isShowHome">Home</div>
+<div class="box" ng-show="isShowGame">Game</div>
+<div class="box" ng-show="isShowChat">Chat</div>
+</body>
+</html>

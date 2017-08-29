@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step08_switch.html</title>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+<select ng-init="what=1" ng-model="what"> <!-- init은 페이지 시작(로딩)했을때 값지정 value에따라 what의 값이 변경되는거같음 -->
+	<option value="1">하나</option>
+	<option value="2">두울</option>
+	<option value="3">세엣</option>
+</select>
+<p>what: <strong>{{what}}</strong></p>
+<div ng-switch on ="what">
+	<img ng-switch-when="1" src="images/image1.png" width="100"/>
+	<img ng-switch-when="2" src="images/image2.png" width="100"/>
+	<img ng-switch-when="3" src="images/image3.png" width="100"/>
+</div>
+</body>
+</html>

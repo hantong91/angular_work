@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step09_http.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var myApp=angular.module("myApp",[]); // html의 ng-app= "myApp" 여기가 같아야함
+	myApp.controller("Ctrl1", ["$scope", "$http" ,function($scope, $http){ //앵귤러가 관리하는 객체($scope, $http)를 함수의 인자로 전달
+		$scope.send=function(){
+			//입력한 내용을 object 에 담고 
+			var obj={msg:$scope.msg};
+			//서버에 전송한다. 
+			$http({
+				url:"httpTest.jsp",
+				method:"post",
+				data:obj,
+				headers:{
+					"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+				}
+			})
+			.success(function(data){
+				console.log("success!");
+				console.log(data);
+			})
+			.error(function(data){
+				console.log("error!");
+				console.log(data);
+			});
+		};
+	}]);
+</script>
+</head>
+<body ng-controller="Ctrl1"> <!-- controller(" Ctrl1" , 여기가같아야함 -->
+
+<input type="text" ng-model="msg"/> 
+<button ng-click="send()">Ajax 전송</button>
+
+<p ng-model="console"></p>
+</body>
+</html>
