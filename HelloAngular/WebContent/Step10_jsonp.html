@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step10_jsonp.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var myApp=angular.module("myApp", []);
+	myApp.controller("one", function($scope, $http){
+		$scope.getList=function(){
+			$scope.names=[];
+			
+			var url="http://localhost:8888/HelloAngular/jsonpTest.jsp?callback=JSON_CALLBACK";
+			
+			$http
+			.jsonp(url, {params:{}})
+			.success(function(data){
+				console.log(data);
+				
+				$scope.names=data;
+			});
+		};
+	});
+</script>
+</head>
+<body ng-controller="one">
+	<h3>jsonp 테스트</h3>
+	<button ng-click="getList()">목록 받아오기</button>
+	<ul>
+		<li ng-repeat="tmp in names">{{tmp}}</li>
+	</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

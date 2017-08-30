@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step09_http2.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var myApp=angular.module("myApp",[]);
+	myApp.controller("Ctrl1", ["$scope", "$http" ,function($scope, $http){
+		$scope.formData={};
+		$scope.send=function(){
+			//alert("submit!");
+			$http({
+				url:"httpTest3.jsp",
+				method:"get",
+				params:$scope.formData,
+				
+			})
+			.success(function(data){
+				console.log(data);
+			})
+			.error(function(data){
+				console.log(data);
+			});
+		};
+	}]);
+</script>
+</head>
+<body ng-controller="Ctrl1">
+<form ng-submit="send()">
+	이름 <input type="text" ng-model="formData.name" />
+	주소 <input type="text" ng-model="formData.addr"/>
+	<button type="submit">전송</button>
+</form>
+<p>formData : <strong>{{formData}}</strong></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

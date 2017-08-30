@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step11_include2.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var myApp=angular.module("myApp", []);
+	myApp.controller("one", function($scope){
+		$scope.template={
+				name:"footer",
+				url:"fragment/footer.html"
+		};
+	});
+</script>
+</head>
+<body ng-controller="one">
+	<h3>include test2</h3>
+	<p>템플릿 이름 : <strong>{{template.name}}</strong></p>
+	<div ng-include="template.url"></div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step10_jsonp2.html</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var myApp=angular.module("myApp", []);
+	myApp.controller("one", function($scope, $http){
+		$scope.formData={};
+		$scope.send=function($event){
+			//폼 전송 이벤트 막기
+			$event.preventDefault();
+			
+			var url="http://localhost:8888/HelloAngular/jsonpTest2.jsp?callback=JSON_CALLBACK";
+			
+			$http
+			.jsonp(url, {params:$scope.formData})
+			.success(function(data){
+				console.log(data);
+				$scope.response=data;
+			});
+		};
+	});
+</script>
+</head>
+<body ng-controller="one">
+<h3>jsonp 테스트2</h3>
+<form action="testAction" ng-submit="send($event)">
+	이름 <input type="text" ng-model="formData.name"/>
+	주소 <input type="text" ng-model="formData.addr"/>
+	<button type="submit">전송</button>
+</form>
+<p>{{formData}}</p>	
+<p>{{response}}</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
