@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step12_router2.html</title>
+<style>
+	table tr:hover{
+		cursor:pointer;
+		background-color:yellow;
+	}
+</style>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script>
+	var myApp=angular.module("myApp",["ngRoute"]);
+	
+	// single page 라우터 설정 
+	myApp.config(function($routeProvider){
+		$routeProvider
+		.when("/home", {templateUrl:"views2/home.html"})
+		.when("/game", {templateUrl:"views2/game.html"})
+		.when("/contacts", {
+			templateUrl:"views2/contacts.html",
+			controller:"contactsCtrl"
+		})
+		.otherwise({rediredTo:"/home"});
+	});
+	
+	myApp.controller("contactsCtrl", function($scope, $http){
+		//서버에 데이터를 요청해서 
+		$http({
+			url:"userList.jsp",
+			method:"get"
+		})
+		.success(function(data){
+			//응답되는 데이터를 model 에 연결한다. 
+			$scope.userList=data;
+		});
+	});
+</script>
+</head>
+<body>
+<h3>Router 테스트</h3>
+<ul>
+	<li><a href="#home">Home</a></li>
+	<li><a href="#game">Game</a></li>
+	<li><a href="#contacts">Contacts</a></li>
+	<li><a href="#etc">etc...</a></li>
+</ul>
+<ng-view></ng-view>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+

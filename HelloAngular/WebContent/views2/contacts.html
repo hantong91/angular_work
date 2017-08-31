@@ -1,0 +1,19 @@
+<div class="page-animation">
+	<h3>Contacts 컨텐츠 입니다.</h3>
+	<p>Lorem ipsum dolor sit amet, 
+	consectetur adipisicing elit. Veniam 
+	ratione reiciendis at fugiat earum
+	 itaque quaerat iusto dolores aut delectus 
+	 aspernatur porro quo. Tenetur aliquid autem 
+	 neque quia magni nostrum?</p>
+	<table>
+		<tr>
+			<th>이름</th>
+			<th>전화번호</th>
+		</tr>
+		<tr ng-repeat="tmp in userList">
+			<td>{{tmp.name}}</td>
+			<td ng-bind="tmp.phone"></td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<title>Step12_router.html</title>
+<link rel="stylesheet" href="css/animate.css" />
+<style>
+	/*
+		클래스명인 page-animation 인 요소가 만들어 질때 적용할 css
+	*/
+	.page-animation.ng-enter{
+		animation: bounceInDown 1s;
+	}
+	/*
+		클래스명인 page-animation 인 요소가 제거될때 적용할 css
+	*/
+	.page-animation.ng-leave{
+		animation: fadeOut 1s;
+	}
+</style>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script>
+	var myApp=angular.module("myApp",["ngRoute","ngAnimate"]);
+	
+	// single page 라우터 설정 
+	myApp.config(function($routeProvider){
+		$routeProvider
+		.when("/home", {templateUrl:"views/home.html"})
+		.when("/game", {templateUrl:"views/game.html"})
+		.when("/contacts", {
+			templateUrl:"views/contacts.html",
+			controller:"contactsCtrl"
+		})
+		.otherwise({rediredTo:"/home"});
+	});
+	
+	myApp.controller("contactsCtrl", function($scope){
+		$scope.userList=[{
+			name:"김구라",
+			phone:"010-6232-4914"
+		},{
+			name:"해골",
+			phone:"017-111-2222"
+		},{
+			name:"원숭이",
+			phone:"018-111-2222"
+		}];
+	});
+</script>
+</head>
+<body>
+<h3>Router 테스트</h3>
+<ul>
+	<li><a href="#home">Home</a></li>
+	<li><a href="#game">Game</a></li>
+	<li><a href="#contacts">Contacts</a></li>
+	<li><a href="#etc">etc...</a></li>
+</ul>
+<ng-view></ng-view>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
