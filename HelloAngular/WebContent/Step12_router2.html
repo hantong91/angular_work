@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Step12_router2.html</title>
+<link rel="stylesheet" href="css/bootstrap.css" />
 <style>
-	table tr:hover{
+	tbody tr:hover{
 		cursor:pointer;
 		background-color:yellow;
 	}
@@ -20,13 +21,45 @@
 		.when("/home", {templateUrl:"views2/home.html"})
 		.when("/game", {templateUrl:"views2/game.html"})
 		.when("/contacts", {
-			templateUrl:"views2/contacts.html",
+			templateUrl:"views2/contacts2.html",
 			controller:"contactsCtrl"
 		})
-		.otherwise({rediredTo:"/home"});
+		.when("/user/:num",{
+			templateUrl:"views2/userDetail.html",
+			controller:"userDetailCtrl"
+		})
+		.otherwise({redirectTo:"/home"});
 	});
 	
-	myApp.controller("contactsCtrl", function($scope, $http){
+	myApp.controller("userDetailCtrl", function($scope, $http, $location, $routeParams){
+		// "/user/:num" 에서 num 이라는 변수에 담긴값 읽어오기
+		var num=$routeParams.num;
+		// 요청 url
+		var url="getDetail.jsp?num="+num;
+		$http({
+			url:url,
+			method:"get"
+		})
+		.success(function(data){
+			$scope.user=data;
+		});
+		//확인을 눌렀을때 호출되는 함수 
+		$scope.confirmClicked=function(){
+			$location.url("/contacts");
+		};
+	});
+	
+	// nav 메뉴 컨트롤러 
+	myApp.controller("navCtrl", function($scope){
+		$scope.activated="home";
+	});
+	
+	myApp.controller("contactsCtrl", function($scope, $http, $location){
+		
+		$scope.goDetail=function(num){
+			$location.url("/user/"+num);
+		};
+		
 		//서버에 데이터를 요청해서 
 		$http({
 			url:"userList.jsp",
@@ -40,15 +73,29 @@
 </script>
 </head>
 <body>
-<h3>Router 테스트</h3>
-<ul>
-	<li><a href="#home">Home</a></li>
-	<li><a href="#game">Game</a></li>
-	<li><a href="#contacts">Contacts</a></li>
-	<li><a href="#etc">etc...</a></li>
-</ul>
-<ng-view></ng-view>
- 
+<div class="container">
+	<div class="page-header">
+		<h1>Angular js <small>Router Test</small></h1>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4" ng-controller="navCtrl">
+			<ul class="nav nav-pills nav-stacked">
+				<li ng-class="{'active': activated=='home'}">
+					<a href="#home" ng-click="activated='home'">Home</a>
+				</li>
+				<li ng-class="{'active': activated=='game'}">
+					<a href="#game" ng-click="activated='game'">Game</a>
+				</li>
+				<li ng-class="{'active': activated=='contacts'}">
+					<a href="#contacts" ng-click="activated='contacts'">Contacts</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<ng-view></ng-view>
+		</div>
+	</div>
+</div>
 </body>
 </html>
 
